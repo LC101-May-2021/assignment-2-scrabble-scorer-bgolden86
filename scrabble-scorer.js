@@ -83,9 +83,12 @@ function transform(pointStructure) {
 		for(let i = 0; i < pointStructure[pointValue].length; i++){
 			let letter = pointStructure[pointValue][i];
 			newPointStructure[letter] = pointValue;
-		}
+      
+  	}
+    
 	}
 	return newPointStructure;
+  
 }
 
 let newPointStructure = transform(oldPointStructure);
