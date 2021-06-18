@@ -82,11 +82,12 @@ function transform(pointStructure) {
 	for (const pointValue in pointStructure) {
 		for(let i = 0; i < pointStructure[pointValue].length; i++){
 			let letter = pointStructure[pointValue][i];
-			newPointStructure[letter] = pointValue;
+			newPointStructure[letter] = Number(pointValue);
       
   	}
     
 	}
+  
 	return newPointStructure;
   
 }
@@ -96,32 +97,35 @@ let newPointStructure = transform(oldPointStructure);
 
 
 function scrabbleScore(word){
-	let score = 0;
+  let score = 0;
 	let i = 0;
 	while(i < word.length){
 		let letter = word[i];
-		score = score + newPointStructure[letter];
+		score = score + newPointStructure[letter.toUpperCase()];
 		i = i + 1;
+    
 	}
+  
 	return score;
 }
 
 const scoringAlgorithms = [ {name           : "Simple Score",
                              description    : "Each letter is worth 1 point.",
-														 scorerFunction : simpleScore},
+														 scoringFunction : simpleScore},
 
 														{name           : "Bonus Vowels",
                              description    : "Vowels are 3 pts, consonants are 1 pt.",
-														 scorerFunction : vowelBonusScore},
+														 scoringFunction : vowelBonusScore},
 
 														{name           : "Scrabble",
                              description    : "The traditional scoring algorithm",
-														 scorerFunction : scrabbleScore} ];
+														 scoringFunction : scrabbleScore} ];
 
 function runProgram() {
+  console.clear();
   let word = initialPrompt();
 	let scorer_choice = scorerPrompt();
-  console.log("Score for \'"+ word +"\':" + scoringAlgorithms[scorer_choice].scorerFunction(word));
+  console.log("Score for \'"+ word +"\':" + scoringAlgorithms[scorer_choice].scoringFunction(word));
 
 }
 // Don't write any code below this line //
