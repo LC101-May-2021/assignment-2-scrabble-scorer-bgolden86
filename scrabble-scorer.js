@@ -82,12 +82,12 @@ function transform(pointStructure) {
 	for (const pointValue in pointStructure) {
 		for(let i = 0; i < pointStructure[pointValue].length; i++){
 			let letter = pointStructure[pointValue][i];
-			newPointStructure[letter] = Number(pointValue);
+			newPointStructure[letter.toLowerCase()] = Number(pointValue);
       
   	}
     
 	}
-  
+  console.log(newPointStructure)
 	return newPointStructure;
   
 }
@@ -101,7 +101,7 @@ function scrabbleScore(word){
 	let i = 0;
 	while(i < word.length){
 		let letter = word[i];
-		score = score + newPointStructure[letter.toUpperCase()];
+		score = score + newPointStructure[letter.toLowerCase()];
 		i = i + 1;
     
 	}
